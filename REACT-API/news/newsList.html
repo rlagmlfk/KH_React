@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>뉴스 목록보기</title>
+  </head>
+  <body>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@17/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <div id="root"></div>
+    <script type="text/babel">
+      function App() {
+        const [newsList, setNewsList] = React.useState([]);
+        const requestOptions = {
+          method: "GET",
+          redirect: "follow",
+        };
+        React.useEffect(() => {
+          // fetch뒤에 then은 콜백이슈가 있으므로 외부(return부분)에서 사용시 주의 필요
+          fetch("https://api.hnpwa.com/v0/news/1.json", requestOptions)
+            .then((response) => response.json())
+            .then((result) => {
+              console.log(result);
+              setNewsList(result);
+            })
+            .catch((error) => console.log("error", error));
+        }, []);
+
+        return (
+          <>
+            <h1>해커뉴스 목록</h1>
+            <ul>
+              {newsList.map((news) => (
+                <div>
+                  <div>{news.title}</div>
+                  <div>{news.comments_count}</div>
+                </div>
+              ))}
+            </ul>
+          </>
+        );
+      }
+      ReactDOM.render(<App />, document.getElementById("root"));
+    </script>
+  </body>
+</html>
