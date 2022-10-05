@@ -5,6 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .list{
+            padding-left: 20px;
+            text-align: left;
+            border-bottom: 1px solid gray;
+        }
+        .modal{
+            margin-top: 20px;
+            padding: 20px;
+            background-color: lightcyan;
+            text-align: left;
+        }
+    </style>
 </head>
 <body>
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
@@ -27,8 +40,13 @@
                 "6월 25일 출판",
                 "7월 30일 출판",
             ]);
-            let [like, setLike] = React.useState(0);
-            let [dislike, setDislike] = React.useState(0);
+            let [like, setLike] = React.useState([0,0,0]);
+            let [dislike, setDislike] = React.useState([0,0,0]);
+            let [index, setIndex] = React.useState([0]);
+            // 모달 여부 공유하기
+            let [modal, setModal] = React.useState(false);
+            let [userInput, setUserInput] = React.useState("");
+
             const add = () =>{
                 setLike(like+1);
             }
@@ -36,21 +54,26 @@
                 //setLike(like-1<0 ? 0 : like-1);
                 setDislike(dislike+1);
             }
-            function bookUpdate() {
+            const bookUpdate = () => {
                 let book_copy = [...books];
                 book_copy[1] = "스프링 정석";
                 setBooks(book_copy);
             }
-            function bookSort() {
+            const bookSort = () => {
                 let book_copy = [...books];
                 book_copy.sort();
                 setBooks(book_copy);
             }
-            const Modal = () => {
+            // 모달 출력하기
+            const bookDetail = (e) =>{
+                console.log(e.target.value);
+                setModal(!modal);
+            }
+            const Modal = (props) => {
                 return (
                     <div className="modal">
-                        <h3>제목</h3>
-                        <h4>출판일</h4>
+                        <h3>제목 : {props.title}</h3>
+                        <h4>index : {props.index} </h4>
                         <p>도서소개</p>
                     </div>
                 );
@@ -60,20 +83,69 @@
                 <button onClick={bookUpdate}>제목수정</button>
                 &nbsp;&nbsp;
                 <button onClick={bookSort}>제목정렬</button>
+                {/* 브라우저는 같은 이름이면 자동으로 배열 전환 처리됨 */}
+                {/* 도서 목록시작 */}
                 <div className="App">
                     {books.map((book, i)=>(
-                        <div className="list">
-                            <h3>{book}</h3>
+                        console.log(i),
+                        <div key={i} className="list">
+                            <h3 onClick={()=>{
+                                setModal(!modal);
+                                setIndex(i);
+                            }}>
+                                {book}
+                                (<span 
+                                onClick={() => {
+                                    let copy_like = [...like];
+                                    copy_like[i] = copy_like[i]+1;
+                                    setLike(copy_like);
+                                }}
+                                >👍</span>
+                                {like[i]}
+                                &nbsp;&nbsp;
+                                <span span 
+                                    onClick={() => {
+                                    let copy_dlike = [...dislike];
+                                    copy_dlike[i] = copy_dlike[i]+1;
+                                    setDislike(copy_dlike);
+                                }}>👎</span>
+                                {dislike[i]})
+                            </h3>
                             <p>{publishs[i]}</p>
-                        (<span onClick={add}>👍</span>좋아요 {like}
-                        &nbsp;&nbsp;
-                        <span onClick={minus}>👎</span>싫어요 {dislike})
-                        </div>
+                            <button onClick={()=>{
+                                let copy = [...books];
+                                copy[i] = "스프링 정석";
+                                setBooks(copy);
+                            }}>수정</button>
+                            <button onClick={()=>{
+                                console.log("삭제");
+                                let copy = [...books];
+                                copy.splice(i,1);
+                                setBooks(copy);
+                            }}>삭제</button>
+                    </div>
                     ))}
+                    {/* 도서 목록 끝 */}
+                                
+                    <input onChange={(e)=>{
+                        console.log(e.target.value);
+                        setUserInput(e.target.value)
+                    }} type="text" />
+                    <button onClick={()=>{
+                        let copy = [...books];
+                        let copy_like = [...like];
+                        let copy_dlike = [...dislike];
+                        copy.unshift(userInput);
+                        copy_like.unshift(0);
+                        copy_dlike.unshift(0);
+                        setBooks(copy);
+                        setLike(copy_like);
+                        setLike(copy_dlike);
+                    }}>
+                        등록
+                    </button>
+                    { modal === true ? <Modal index={index} title={books[index]} /> : null}
                 </div>
-                {
-                    modal === true ? <Modal /> : null
-                }
                 </>
             );
         }
