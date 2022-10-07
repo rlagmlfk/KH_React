@@ -12,8 +12,12 @@ const App = ({ authLogic }) => {
           path="/"
           exact={true} 
           element={<LoginPage authLogic={authLogic} />} />
-      <Route path="/hackernews" exact={true} element={ <HackerNews />} />
-      <Route path="/newsreple/:id" exact={true} element={ <HackerNewsReple />} />
+        <Route path="/hackernews/:userId"
+          exact={true}
+          element={<HackerNews authLogic={authLogic} />} />
+        <Route path="/newsreple/:id"
+          exact={true}
+          element={<HackerNewsReple />} />
     </Routes>
     </>
   );
