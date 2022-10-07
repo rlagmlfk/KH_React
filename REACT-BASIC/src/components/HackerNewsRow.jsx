@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const NewsLi = styled.li`
@@ -49,7 +50,11 @@ const HackerNewsRow = (props) => {
         <NewsLi key={news.id}>
             <CardRow>
                 <CardContent>
-                    <DivTitle>{news.title}</DivTitle>
+                    <DivTitle>
+                        <Link to={"/newsreple/" + news.id} className="nav-link">
+                            {news.title}
+                        </Link>
+                    </DivTitle>
                     <DivCount>{news.comments_count}</DivCount>
                 </CardContent>
                 <DivEtc>
