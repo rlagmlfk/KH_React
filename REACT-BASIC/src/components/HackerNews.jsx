@@ -33,7 +33,7 @@ const HackerNews = ({authLogic}) => {
             .then(response => response.json())
             .then(result => { console.log(result); setNewList(result)})
             .catch(error => console.log('error', error));
-        })
+        },[])
     return (
         <>
         <HackerHeader userId={userId} onLogout={onLogout} />
