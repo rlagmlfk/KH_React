@@ -19,6 +19,7 @@ const HackerHeader = ({userId, onLogout}) => {
                     <Link to="/" className='nav-link'>Home</Link>
                     <Link to="/hackernews" className='nav-link'>해커뉴스</Link>
                     <Link to="/youtube" className='nav-link'>유튜브</Link>
+                    <Link to="/dept" className='nav-link'>부서관리</Link>
                 </Nav>
             {onLogout && <Button variant='dark' onClick={onLogout}>Logout</Button>}
             </Navbar.Collapse>
