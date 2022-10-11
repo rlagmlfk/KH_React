@@ -5,7 +5,7 @@ import HackerNewsRow from './HackerNewsRow';
 import { useNavigate, useParams } from 'react-router-dom';
 
 
-const HackerNews = ({authLogic}) => {
+const HackerNews = ({authLogic, pictureUpload}) => {
     const { userId } = useParams();
     const navigate = useNavigate();
     console.log('구글 인증 아이디 : '+userId);
@@ -39,7 +39,7 @@ const HackerNews = ({authLogic}) => {
         <HackerHeader userId={userId} onLogout={onLogout} />
             <div>
                 {newsList.map((news) => (
-                    <HackerNewsRow key={news.id} news={news} />
+                    <HackerNewsRow key={news.id} news={news} pictureUpload={pictureUpload} />
                 ))}
             </div>
         <HackerFooter />

@@ -11,7 +11,7 @@ const DeptList = ({ authLogic }) => {
     const { userId } = useParams()
     console.log(userId);
     const [deptList, setDeptList] = useState([])
-        const onLogout = () => {
+    const onLogout = () => {
         console.log("onLogout 호출 성공");
         authLogic.logout();
     }
