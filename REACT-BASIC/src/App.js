@@ -4,7 +4,7 @@ import HackerNewsReple from "./components/HackerNewsReple";
 import LoginPage from "./components/LoginPage";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-const App = ({ authLogic }) => {
+const App = ({ authLogic, pictureUpload }) => {
   return (
     <>
     <Routes>
@@ -14,7 +14,7 @@ const App = ({ authLogic }) => {
           element={<LoginPage authLogic={authLogic} />} />
         <Route path="/hackernews/:userId"
           exact={true}
-          element={<HackerNews authLogic={authLogic} />} />
+          element={<HackerNews authLogic={authLogic} pictureUpload={pictureUpload} />} />
         <Route path="/newsreple/:id"
           exact={true}
           element={<HackerNewsReple />} />

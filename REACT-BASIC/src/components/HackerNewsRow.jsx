@@ -45,14 +45,35 @@ const DivUTP = styled.div`
 `
 
 const HackerNewsRow = (props) => {
-    const { news } = props
-    const [file, setFile] = useState({fileName: null, fileURL:null});
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-    const imgChange = (event) => {
+    const { news, pictureUpload } = props
+    const [file, setFile] = useState({ fileName:null, fileURL:null })
+    const [show, setShow] = useState(false)
+    const handleClose = () => setShow(false)
+    const handleShow = () => setShow(true)
+    const imgChange = async (event) => {
         console.log("imgChange호출");
-        console.log(event.target.files[0]);
+        console.log(event.target.files[0])
+        const upload = await pictureUpload.upload(event.target.files[0])
+        setFile({
+        fileName: upload.public_id + "." + upload.format,
+        fileURL: upload.url,
+        })
+        const uploadIMG = document.getElementById("img") //input의 이미지 객체 얻어오기
+        const holder = document.getElementById("uploadImg") //이미지를 집어넣을 곳의 부모태그
+        const file = uploadIMG.files[0]
+        const reader = new FileReader()
+        reader.onload = function (event) {
+        const img = new Image()
+        img.src = event.target.result
+        if (img.width > 150) {
+            //넣으려는 사진 크기에 맞춰 width값을 제한하면 된다.
+            img.width = 150
+        }
+        holder.innerHTML = ""
+        holder.appendChild(img)
+        }
+        reader.readAsDataURL(file)
+        return false
     }
     return (
         <>
@@ -74,7 +95,7 @@ const HackerNewsRow = (props) => {
                 </DivEtc>
             </CardRow>
                 <Button variant="primary" onClick={handleShow}>
-                Launch demo modal
+                모달
                 </Button>
             </NewsLi>
     {/*=========================[[[[[사진 업로드 테스트 모달]]]]]=========================*/}
@@ -85,8 +106,11 @@ const HackerNewsRow = (props) => {
         <Modal.Body>
             <Form id="f_img" method="get">
                 <Form.Group className="mb-3">
-                    <input className="form-control" type="file" onChange={imgChange} />
+                    <input id="img" className="form-control" type="file" onChange={imgChange} />
                 </Form.Group>
+                <div id="uploadImg">
+                    <img className="thumbNail" src="http://via.placeholder.com/200X250" alt="미리보기" />
+                </div>
             </Form>
         </Modal.Body>
         <Modal.Footer>
