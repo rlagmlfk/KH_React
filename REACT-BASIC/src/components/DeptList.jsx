@@ -9,7 +9,7 @@ import HackerFooter from './HackerFooter';
 const DeptList = ({ authLogic }) => {
     // const { authLogic } = props
     const { userId } = useParams()
-    console.log(userId);
+    console.log("DeptList ===>"+userId);
     const [deptList, setDeptList] = useState([])
     const onLogout = () => {
         console.log("onLogout 호출 성공");
