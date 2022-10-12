@@ -8,7 +8,7 @@ import HackerFooter from './HackerFooter';
 
 const DeptList = ({ authLogic }) => {
     // const { authLogic } = props
-    const { userId } = useParams()
+    const userId = window.localStorage.getItem("userId");
     console.log("DeptList ===>"+userId);
     const [deptList, setDeptList] = useState([])
     const onLogout = () => {
