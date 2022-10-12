@@ -50,7 +50,7 @@ const HackerNewsRow = (props) => {
     const [show, setShow] = useState(false)
     const handleClose = () => setShow(false)
     const handleShow = () => setShow(true)
-    const imgChange = async (event) => {
+const imgChange = async (event) => {
     console.log("imgChange호출")
     console.log(event.target.files[0])
     const upload = await pictureUpload.upload(event.target.files[0])
