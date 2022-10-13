@@ -1,11 +1,13 @@
-import { Route, Routes } from "react-router-dom"
-import HackerNews from "./components/HackerNews"
-import HackerNewsReple from "./components/HackerNewsReple"
-import LoginPage from "./components/LoginPage"
-import "bootstrap/dist/css/bootstrap.min.css"
-import DeptList from "./components/DeptList"
-import "./dept.css"
-import DeptDetail from "./components/DeptDetail"
+import { Route, Routes } from "react-router-dom";
+import HackerNews from "./components/HackerNews";
+import HackerNewsReple from "./components/HackerNewsReple";
+import LoginPage from "./components/LoginPage";
+import "bootstrap/dist/css/bootstrap.min.css";
+import DeptList from "./components/DeptList";
+import "./dept.css";
+import DeptDetail from "./components/DeptDetail";
+import YoutubeList from "./components/YoutubeList";
+import VideoDetail from "./components/VideoDetail";
 
 const App = ({ authLogic, pictureUpload }) => {
   return (
@@ -29,6 +31,16 @@ const App = ({ authLogic, pictureUpload }) => {
           element={<HackerNewsReple />}
         />
         <Route
+          path="/youtube"
+          exact={true}
+          element={<YoutubeList authLogic={authLogic} />}
+        />
+        <Route
+          path="/videodetail/:id"
+          exact={true}
+          element={<VideoDetail authLogic={authLogic} />}
+        />
+        <Route
           path="/dept"
           exact={true}
           element={
@@ -42,7 +54,7 @@ const App = ({ authLogic, pictureUpload }) => {
         />
       </Routes>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
