@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
-import { jsonDeptList } from "./service/dbLogic";
+import { jsonDeptList } from "../service/dbLogic";
 
 const DeptDetail = (props) => {
   // DeptRow에서 쿼리스트링으로 넘어온 부서번호 담기
@@ -33,7 +33,9 @@ const DeptDetail = (props) => {
     };
     asyncDB();
   }, [deptno]); // 의존배열이 있고 없고는 useState의 순서에 영향X
-  const deptDelete = () => {};
+  const deptDelete = () => {
+    const DEPT_URL = `http://localhost:9000/dept/deptDelete?${deptno}`;
+  };
   return (
     <>
       <div className="container">

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { jsonDeptList } from "./service/dbLogic";
+import { jsonDeptList } from "../service/dbLogic";
 import Table from "react-bootstrap/Table";
-import HackerHeader from "./HackerHeader";
-import HackerFooter from "./HackerFooter";
 import { Button, Form, Modal } from "react-bootstrap";
 import DeptRow from "./DeptRow";
+import HackerHeader from "../page/HackerHeader";
+import HackerFooter from "../page/HackerFooter";
 
 const DeptList = ({ authLogic, pictureUpload }) => {
   // const { authLogic } = props

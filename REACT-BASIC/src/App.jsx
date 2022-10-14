@@ -1,13 +1,12 @@
 import { Route, Routes } from "react-router-dom";
-import HackerNews from "./components/HackerNews";
-import HackerNewsReple from "./components/HackerNewsReple";
+import HackerNews from "./components/news/HackerNews";
+import HackerNewsReple from "./components/news/HackerNewsReple";
 import LoginPage from "./components/LoginPage";
 import "bootstrap/dist/css/bootstrap.min.css";
-import DeptList from "./components/DeptList";
-import "./dept.css";
-import DeptDetail from "./components/DeptDetail";
-import YoutubeList from "./components/YoutubeList";
-import VideoDetail from "./components/VideoDetail";
+import DeptList from "./components/dept/DeptList";
+import "./css/dept.css";
+import DeptDetail from "./components/dept/DeptDetail";
+import YoutubeList from "./components/youtube/YoutubeList";
 
 const App = ({ authLogic, pictureUpload }) => {
   return (
@@ -34,11 +33,6 @@ const App = ({ authLogic, pictureUpload }) => {
           path="/youtube"
           exact={true}
           element={<YoutubeList authLogic={authLogic} />}
-        />
-        <Route
-          path="/videodetail/:id"
-          exact={true}
-          element={<VideoDetail authLogic={authLogic} />}
         />
         <Route
           path="/dept"
