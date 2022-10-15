@@ -10,6 +10,7 @@ import VideoList from "./VideoList";
 
 const YoutubeList = ({ authLogic }) => {
   // const userId = window.localStorage.getItem("userId");
+  const key = process.env.REACT_APP_YOUTUBE_APIKEY;
   const navigate = useNavigate();
   const [videos, setVideos] = useState([]);
   const [keyword, setKeyword] = useState("");
@@ -33,7 +34,7 @@ const YoutubeList = ({ authLogic }) => {
   useEffect(() => {
     axios
       .get(
-        `https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=25&key=AIzaSyD-aJStPNdtyh4LppZe8c_lc8PNH-4KyvA`
+        `https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=25&key=${key}`
       )
       .then((result) => {
         console.log(result);
@@ -47,7 +48,7 @@ const YoutubeList = ({ authLogic }) => {
     console.log("검색버튼 클릭");
     axios
       .get(
-        `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${keyword}&key=AIzaSyD-aJStPNdtyh4LppZe8c_lc8PNH-4KyvA&type=video`
+        `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${keyword}&key=${key}&type=video`
       )
       .then((result) => result.data)
       .then(
