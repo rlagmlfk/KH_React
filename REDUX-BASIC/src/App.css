@@ -1,11 +1,13 @@
 .container {
   display: block;
   width: 500px;
-  border: 1px solid lightgray;
+  border: 2px solid navy;
+  padding: 20px;
 }
 
 .sub_container {
   width: 300px;
-  border: 1px solid lightcoral;
+  border: 2px solid lightcoral;
   margin: 10px 10px;
+  padding: 10px;
 }
