@@ -33,9 +33,7 @@ const DeptDetail = (props) => {
     };
     asyncDB();
   }, [deptno]); // 의존배열이 있고 없고는 useState의 순서에 영향X
-  const deptDelete = () => {
-    const DEPT_URL = `http://localhost:9000/dept/deptDelete?${deptno}`;
-  };
+
   return (
     <>
       <div className="container">
@@ -63,9 +61,7 @@ const DeptDetail = (props) => {
             </div>
           </Card.Body>
           <div>
-            <Button variant="outline-danger" onClick={deptDelete}>
-              삭제
-            </Button>
+            <Button variant="outline-danger">삭제</Button>
             &nbsp;
             <Button variant="outline-dark">
               <Link to="/dept" className="nav-link">

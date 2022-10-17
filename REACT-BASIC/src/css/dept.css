@@ -16,3 +16,7 @@
 .dept-detail {
   display: flex;
 }
+
+.dept-list {
+  margin: 20px 0px;
+}
