@@ -6,8 +6,8 @@ import MainPage from "./components/page/MainPage";
 const ReduxApp = (props) => {
   return (
     <div className="container">
-      <ReduxHeader />
       <h1>React Redux 실습</h1>
+      <ReduxHeader />
       <MainPage />
       <ReduxBottom />
     </div>
