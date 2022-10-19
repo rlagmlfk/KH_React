@@ -1,4 +1,3 @@
-import "./App.css";
 import Header from "./components/include/Header";
 import Bottom from "./components/include/Bottom";
 import KaKaoMapTest from "./components/kakao/KaKaoMapTest";

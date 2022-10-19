@@ -1,13 +1,15 @@
 .container {
   display: block;
-  width: 500px;
+  width: 800px;
   border: 2px solid navy;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   padding: 20px;
 }
 
 .sub_container {
-  width: 300px;
+  width: 600px;
   border: 2px solid lightcoral;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   margin: 10px 10px;
   padding: 10px;
 }
