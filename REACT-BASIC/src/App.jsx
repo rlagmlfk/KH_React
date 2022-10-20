@@ -7,6 +7,8 @@ import DeptList from "./components/dept/DeptList";
 import "./css/dept.css";
 import DeptDetail from "./components/dept/DeptDetail";
 import YoutubeList from "./components/youtube/YoutubeList";
+import NoticeList from "./components/notice/NoticeList";
+import NoticeDetail from "./components/notice/NoticeDetail";
 
 const App = ({ authLogic, pictureUpload }) => {
   return (
@@ -33,6 +35,16 @@ const App = ({ authLogic, pictureUpload }) => {
           path="/youtube"
           exact={true}
           element={<YoutubeList authLogic={authLogic} />}
+        />
+        <Route
+          path="/notice"
+          exact={true}
+          element={<NoticeList authLogic={authLogic} />}
+        />
+        <Route
+          path="/noticedetail/:n_no"
+          exact={true}
+          element={<NoticeDetail authLogic={authLogic} />}
         />
         <Route
           path="/dept"
