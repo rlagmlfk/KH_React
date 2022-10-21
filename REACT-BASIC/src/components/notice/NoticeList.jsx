@@ -32,12 +32,45 @@ const NoticeList = (props) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  // useState(""), useState({}) - Object.keys(), useState([]) - map처리 가능
+  // 파이어베이스에서는 라벨에 객체포맷으로 데이터 관리함
+  // realtimedatabase에서는 라벨을 붙인 객체 형태로 제공
+  // useState({}) -> useState([])
+  // let arr = []; arr.push(object) -> [{},{},{}]
   const [notices, setNotices] = useState({
-    1: { n_no: 1, n_title: "제목1", n_writer: "관리자", n_date: "2022-10-20" },
+    1: { n_no: 3, n_title: "제목1", n_writer: "관리자", n_date: "2022-10-20" },
     2: { n_no: 2, n_title: "제목2", n_writer: "관리자", n_date: "2022-10-21" },
-    3: { n_no: 3, n_title: "제목3", n_writer: "관리자", n_date: "2022-10-22" },
+    3: { n_no: 1, n_title: "제목3", n_writer: "관리자", n_date: "2022-10-22" },
   });
-  const searchNotice = () => {};
+  const searchNotice = () => {
+    const gubun = document.querySelector("#gubun").value;
+    const keyword = document.querySelector("#keyword").value;
+    console.log(gubun + ", " + keyword);
+    let result = [];
+    // {n_title: , n_writer:, n_conten:},{},{t}
+    if (gubun === "n_title") {
+      Object.keys(notices).map((key) =>
+        notices[key].n_title && notices[key].n_title === keyword
+          ? result.push(notice[key])
+          : null
+      );
+    } else if (gubun === "n_writer") {
+      Object.keys(notices).map((key) =>
+        notices[key].n_writer && notices[key].n_writer === keyword
+          ? result.push(notice[key])
+          : null
+      );
+    } else if (gubun === "n_content") {
+      Object.keys(notices).map((key) =>
+        notices[key].n_content && notices[key].n_content === keyword
+          ? result.push(notice[key])
+          : null
+      );
+    }
+    // 배열 result에는 조건 검색 결과가 담김
+    setNotices(result);
+  }; ///// end of searchNotice
+
   const noticeInsert = (e) => {
     // submit 사용시 페이지 새로고침 처리 방어 코드
     e.preventDefault(); // 이벤트 버블링 방어코드
@@ -51,7 +84,7 @@ const NoticeList = (props) => {
     console.log("폼 내용 변경 발생 value : " + e.target.value);
     setNotice({
       ...notice, // 처음에 초기화된 정보에 얕은 복사 처리
-      n_date: Date.now(),
+      n_no: Date.now(),
       [e.target.name]: e.target.value,
     });
   };
