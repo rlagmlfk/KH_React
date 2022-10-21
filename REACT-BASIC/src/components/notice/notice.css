@@ -20,3 +20,8 @@
 .notice-list {
   margin: 20px 0px;
 }
+
+.detail-link {
+  display: flex;
+  margin: 6px;
+}

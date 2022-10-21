@@ -70,7 +70,10 @@ const NoticeList = (props) => {
     // 배열 result에는 조건 검색 결과가 담김
     setNotices(result);
   }; ///// end of searchNotice
-
+  const noticeList = () => {
+    console.log("noticeList");
+    window.location.reload();
+  };
   const noticeInsert = (e) => {
     // submit 사용시 페이지 새로고침 처리 방어 코드
     e.preventDefault(); // 이벤트 버블링 방어코드
@@ -84,7 +87,7 @@ const NoticeList = (props) => {
     console.log("폼 내용 변경 발생 value : " + e.target.value);
     setNotice({
       ...notice, // 처음에 초기화된 정보에 얕은 복사 처리
-      n_no: Date.now(),
+      n_date: Date.now(),
       [e.target.name]: e.target.value,
     });
   };
@@ -146,7 +149,10 @@ const NoticeList = (props) => {
         </div>
         <hr />
         <div className="noticelist-footer">
-          <Button variant="warning">전체조회</Button>&nbsp;
+          <Button variant="warning" onClick={noticeList}>
+            전체조회
+          </Button>
+          &nbsp;
           <Button variant="success" onClick={handleShow}>
             공지 등록
           </Button>
