@@ -3,8 +3,16 @@ import HackerHeader from "../page/HackerHeader";
 import HackerFooter from "../page/HackerFooter";
 import HackerNewsRow from "./HackerNewsRow";
 import { useNavigate, useParams } from "react-router-dom";
+import MyPagenation from "../MyPagenation";
 
-const HackerNews = ({ authLogic, pictureUpload }) => {
+const HackerNews = ({
+  authLogic,
+  pictureUpload,
+  newsList,
+  newsPerPage,
+  totalNews,
+  paginate,
+}) => {
   const { userId } = useParams();
   const navigate = useNavigate();
   console.log("구글 인증 아이디 : " + userId);
@@ -47,6 +55,7 @@ const HackerNews = ({ authLogic, pictureUpload }) => {
             pictureUpload={pictureUpload}
           />
         ))}
+        <MyPagenation />
       </div>
       <HackerFooter />
     </>
